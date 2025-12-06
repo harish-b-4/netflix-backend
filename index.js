@@ -3,20 +3,18 @@ const cors = require("cors")
 const app = express()
 
 app.use(cors())
-app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-var username = "harish"
+var username = "harish@gmail.com"
 var password = 1230
 
 
-app.get("/login", function (req, res) {
+app.post("/login", function (req, res) {
 
-    console.log(req.query.username)
-    console.log(req.query.password)
 
-    if (req.query.username === username && Number(req.query.password) === password) {
+    if (req.body.username === username && Number(req.body.password) === password) {
         res.send(true)
     }
     else {
@@ -28,6 +26,6 @@ app.get("/login", function (req, res) {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+    console.log(`Server running on port ${PORT}`)
+})
 
